@@ -1,24 +1,30 @@
-# trace-frontend
+# EC サイト
 
-## Project setup
-```
-yarn install
-```
+## 作成した目的
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+Laravel, Vue.js, SPA の理解を深めるため
 
-### Compiles and minifies for production
-```
-yarn build
-```
+## 他のリポジトリ
 
-### Lints and fixes files
-```
-yarn lint
-```
+バックエンドのリポジトリ：
+https://github.com/aquarius1905/trace-backend
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 機能一覧
+
+-   商品一覧（トップページ）
+-   会員登録
+-   メール認証
+-   ログイン
+-   商品詳細
+
+## 使用技術
+
+| カテゴリ       | 技術スタック                  |
+| -------------- | ----------------------------- |
+| フロントエンド | HTML, CSS, JavaScript, Vue.js |
+| バックエンド   | PHP, Laravel                  |
+| データベース   | MySQL                         |
+
+## テーブル設計
+
+## ER 図
