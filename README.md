@@ -11,11 +11,11 @@ https://github.com/aquarius1905/trace-backend
 
 ## 機能一覧
 
--   商品一覧（トップページ）
--   会員登録
--   メール認証
--   ログイン
--   商品詳細
+- 商品一覧（トップページ）
+- 会員登録
+- メール認証
+- ログイン
+- 商品詳細
 
 ## 使用技術
 
@@ -27,4 +27,8 @@ https://github.com/aquarius1905/trace-backend
 
 ## テーブル設計
 
+![tbl-image](/src/assets/images/table.jpg)
+
 ## ER 図
+
+![erd-image](/src/assets/images/erd.jpg)
