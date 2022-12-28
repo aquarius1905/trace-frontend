@@ -1,9 +1,13 @@
 <template>
   <div class="header">
-    <h1 class="main__ttl">Trace</h1>
+    <router-link to="/" class="main__ttl">
+      <h1 class="main__ttl">Trace</h1>
+    </router-link>
     <div class="img__wrap">
       <img :src="require(`@/assets/images/cart.png`)" alt="cart" class="cart">
-      <img :src="require(`@/assets/images/user.png`)" alt="user" class="user">
+      <router-link to="/login">
+        <img :src="require(`@/assets/images/user.png`)" alt="user" class="user">
+      </router-link>
     </div>
   </div>
 </template>
@@ -17,10 +21,12 @@
   display: flex;
   justify-content: space-between;
 }
+
 .main__ttl {
   font-size: 32px;
-  font-weight: 500;
+  font-weight: normal;
   color: #222;
+  text-decoration: none;
 }
 
 .cart,
