@@ -22,7 +22,7 @@
             placeholder="password">
         </div>
       </div>
-      <button class="login__btn">ログイン</button>
+      <button class="login__btn" @click="login">ログイン</button>
     </div>
     <div class="register__container">
       <h2 class="ttl">新規会員登録</h2>
@@ -40,7 +40,7 @@
         <div>
           <label for="password" class="lbl">パスワード:</label>
           <input type="password" 
-            v-model="login_password" 
+            v-model="register_password" 
             id="password" 
             class="input"
             placeholder="password">
@@ -48,18 +48,19 @@
         <div>
           <label for="name" class="lbl">名前:</label>
           <input type="text" 
-            v-model="register_email" 
+            v-model="register_name" 
             id="name" 
             class="input"
             placeholder="name">
         </div>
       </div>
-      <button class="register__btn">新規会員登録</button>
+      <button class="register__btn" @click="register">新規会員登録</button>
     </div>
   </div>
 </template>
 
 <script>
+import { api } from '@/plugins/axios'
 export default {
   data() {
     return {
@@ -69,6 +70,34 @@ export default {
       register_password: '',
       register_name: '',
     }
+  },
+
+  methods: {
+    login() {
+      // const sendData = {
+      //   email: this.login_email,
+      //   password: this.login_password
+      // }
+    },
+    async register() {
+      if (!confirm("登録しますか？")) {
+        return;
+      }
+      
+      try {
+        const sendData = {
+          email: this.register_email,
+          password: this.register_password,
+          name: this.register_name
+        };
+        const response = await api.post('/users', sendData);
+        if (response.status === 201) {
+          alert("会員登録に成功しました。");
+        }
+      } catch (error) {
+        alert("会員登録に失敗しました。");
+      }
+    },
   }
 }
 </script>
