@@ -23,7 +23,7 @@
 }
 
 .main__ttl {
-  font-size: 32px;
+  font-size: 40px;
   font-weight: normal;
   color: #222;
   text-decoration: none;
