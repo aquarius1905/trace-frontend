@@ -5,7 +5,7 @@
     </router-link>
     <div class="img__wrap">
       <img :src="require(`@/assets/images/cart.png`)" alt="cart" class="cart">
-      <router-link to="/login">
+      <router-link to="/login-and-register">
         <img :src="require(`@/assets/images/user.png`)" alt="user" class="user">
       </router-link>
     </div>

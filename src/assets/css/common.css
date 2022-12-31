@@ -1,0 +1,13 @@
+.input__form {
+  width: 100%;
+  height: 330px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.error {
+  width: 95%;
+  color: tomato;
+  text-align: right;
+}
