@@ -1,104 +1,129 @@
 <template>
   <div class="register">
-    <div class="login__container">
+    <ValidationForm class="login__container">
       <h2 class="ttl">ログイン</h2>
       <h3 class="sub__ttl">会員のお客様</h3>
       <p class="txt">メールアドレスとパスワードを入力してログインして下さい。</p>
       <div class="input__wrap">
         <div>
           <label for="email" class="lbl">メールアドレス:</label>
-          <input type="text" 
+          <ValidationField type="text" 
             v-model="login_email" 
+            name="email"
             id="email" 
             class="input"
-            placeholder="email">
+            placeholder="email" 
+            rules="required|email"/>
+            <div class="error">
+              <ValidationErrorMessage name="email" />
+            </div>
         </div>
         <div>
           <label for="password" class="lbl">パスワード:</label>
-          <input type="password" 
+          <ValidationField type="password" 
             v-model="login_password" 
+            name="password"
             id="password" 
             class="input"
-            placeholder="password">
+            placeholder="password" 
+            rules="required|min:6" />
+            <div class="error">
+              <ValidationErrorMessage name="password" />
+            </div>
         </div>
       </div>
       <button class="login__btn" @click="login">ログイン</button>
-    </div>
-    <div class="register__container">
+    </ValidationForm>
+    <ValidationForm class="register__container">
       <h2 class="ttl">新規会員登録</h2>
       <h3 class="sub__ttl">初めてご利用の方・会員以外の方</h3>
       <p class="txt">初めてご利用のお客様は、こちらから会員登録を行って下さい。</p>
       <div class="input__wrap">
         <div>
           <label for="email" class="lbl">メールアドレス:</label>
-          <input type="text" 
+          <ValidationField type="text" 
             v-model="register_email" 
+            name="email"
             id="email" 
             class="input"
-            placeholder="email">
+            placeholder="email" 
+            rules="required|email" />
+            <div class="error">
+              <ValidationErrorMessage name="email" />
+            </div>
         </div>
         <div>
           <label for="password" class="lbl">パスワード:</label>
-          <input type="password" 
+          <ValidationField type="password" 
             v-model="register_password" 
+            name="password"
             id="password" 
             class="input"
-            placeholder="password">
+            placeholder="password" 
+            rules="required|min:6" />
+            <div class="error">
+              <ValidationErrorMessage name="password" />
+            </div>
         </div>
         <div>
           <label for="name" class="lbl">名前:</label>
-          <input type="text" 
+          <ValidationField type="text" 
             v-model="register_name" 
+            name="name"
             id="name" 
             class="input"
-            placeholder="name">
+            placeholder="name" 
+            rules="required|min:4" />
+            <div class="error">
+              <ValidationErrorMessage name="name" />
+            </div>
         </div>
       </div>
       <button class="register__btn" @click="register">新規会員登録</button>
-    </div>
+    </ValidationForm>
   </div>
 </template>
 
 <script>
 import { api } from '@/plugins/axios'
+
 export default {
   data() {
     return {
-      login_email: '',
-      login_password: '',
-      register_email: '',
-      register_password: '',
-      register_name: '',
-    }
+        login_email: "",
+        login_password: "",
+        register_email: "",
+        register_password: "",
+        register_name: "",
+    };
   },
-
   methods: {
-    login() {
-      // const sendData = {
-      //   email: this.login_email,
-      //   password: this.login_password
-      // }
-    },
-    async register() {
-      if (!confirm("登録しますか？")) {
-        return;
-      }
-      
-      try {
-        const sendData = {
-          email: this.register_email,
-          password: this.register_password,
-          name: this.register_name
-        };
-        const response = await api.post('/users', sendData);
-        if (response.status === 201) {
-          alert("会員登録に成功しました。");
-        }
-      } catch (error) {
-        alert("会員登録に失敗しました。");
-      }
-    },
-  }
+      login() {
+          // const sendData = {
+          //   email: this.login_email,
+          //   password: this.login_password
+          // }
+      },
+      async register() {
+          if (!confirm("登録しますか？")) {
+              return;
+          }
+          try {
+              const sendData = {
+                  email: this.register_email,
+                  password: this.register_password,
+                  name: this.register_name
+              };
+              const response = await api.post("/users", sendData);
+              if (response.status === 201) {
+                  alert("会員登録に成功しました。");
+              }
+          }
+          catch (error) {
+              alert("会員登録に失敗しました。");
+          }
+      },
+  },
 }
 </script>
 
@@ -117,7 +142,7 @@ export default {
 .login__container,
 .register__container {
   width: 49%;
-  height: 320px;
+  height: 330px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -187,5 +212,11 @@ export default {
 
 .register__btn {
   background-color: #80a31d
+}
+
+.error {
+  width: 95%;
+  color: tomato;
+  text-align: right;
 }
 </style>
