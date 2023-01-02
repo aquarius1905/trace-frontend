@@ -118,11 +118,11 @@ export default {
         const response = await api.post(
           "/users/", sendData
         );
+        
         if (response.status === 201) {
           alert("会員登録に成功しました。\nご登録頂いたメールアドレス宛にメールを送信しましたので、\n認証をお願い致します。");
         }
       } catch (error) {
-        console.log(error);
         alert("会員登録に失敗しました。");
       }
     },
