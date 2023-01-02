@@ -13,7 +13,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .login-and-register {
   display: flex;
   justify-content: center;
