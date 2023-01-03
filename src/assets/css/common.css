@@ -11,3 +11,7 @@
   color: tomato;
   text-align: right;
 }
+
+.box__shadow {
+  box-shadow: 2px 2px 4px 1px #888;
+}
