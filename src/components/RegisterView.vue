@@ -97,9 +97,9 @@ import { api } from '@/plugins/axios'
 export default {
   data() {
     return {
-      email: "",
-      password: "",
-      name: "",
+      email: '',
+      password: '',
+      name: '',
     }
   },
 
@@ -116,7 +116,7 @@ export default {
           name: this.name
         };
         const response = await api.post(
-          "/users/", sendData
+          '/users/', sendData
         );
         
         if (response.status === 201) {

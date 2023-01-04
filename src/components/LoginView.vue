@@ -33,6 +33,7 @@
             <ErrorMessage name="password" />
           </div>
         </div>
+        <div class="error">{{ login_error }}</div>
       </div>
       <button class="login__btn" @click="login()" :disabled="!(meta.valid && meta.dirty)">
         ログイン
@@ -42,21 +43,63 @@
 </template>
 
 <script>
-// import { api } from '@/plugins/axios'
+import { api } from '@/plugins/axios'
+import { mapActions } from 'vuex'
+import { HOME } from '@/const/pathName'
 
 export default {
   data() {
     return {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
+      login_error: ''
     }
   },
   methods: {
-    login() {
-          // const sendData = {
-          //   email: this.email,
-          //   password: this.password
-          // }
+    ...mapActions([
+      'setAccessToken',
+      'setLoggedInUserData'
+    ]),
+    async login() {
+      const sendData = {
+        email: this.email,
+        password: this.password
+      }
+
+      try {
+        const { data } = await api.post(
+          '/users/login', sendData
+        );
+
+        this.setAccessToken(data.token);
+
+        await this.getUserData();
+
+        this.$router.push({
+          name: HOME
+        });
+
+      } catch (error) {
+        this.showError(error);
+      }
+    },
+    showError(error) {
+      switch (error.response.status) {
+        case 401:
+          this.login_error = 'メールアドレスとパスワードが一致しません';
+          break;
+        case 403:
+          this.login_error = 'メールアドレスが認証されていません';
+          break;
+        case 404:
+          this.login_error = 'メールアドレスが存在しません';
+          break;
+      }
+    },
+    async getUserData() {
+      const { data } = await api.get('/users/me');
+      this.setLoggedInUserData(data.data);
+      return data.data;
     }
   }
 }

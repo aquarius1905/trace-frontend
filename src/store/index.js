@@ -17,7 +17,7 @@ export default createStore({
     setAccessToken(state, payload) {
       state.accessToken = payload;
     },
-    setLoggedInUser(state, payload) {
+    setLoggedInUserData(state, payload) {
       state.loggedInUser = payload;
     }
   },
@@ -25,8 +25,8 @@ export default createStore({
     setAccessToken(context, payload) {
       context.commit('setAccessToken', payload);
     },
-    setLoggedInUser(context, payload) {
-      context.commit('setLoggedInUser', payload);
+    setLoggedInUserData(context, payload) {
+      context.commit('setLoggedInUserData', payload);
     }
   },
   modules: {
