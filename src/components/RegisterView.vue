@@ -94,6 +94,8 @@
 
 <script>
 import { api } from '@/plugins/axios'
+import { COMMON_MSG } from '@/const/pathName'
+
 export default {
   data() {
     return {
@@ -120,7 +122,12 @@ export default {
         );
         
         if (response.status === 201) {
-          alert("会員登録に成功しました。\nご登録頂いたメールアドレス宛にメールを送信しましたので、\n認証をお願い致します。");
+          const msg = "会員登録が完了しました。\n\nご登録頂いたメールアドレス宛にメールを送信しましたので、\n認証をお願い致します。";
+          
+          this.$router.push({
+            name: COMMON_MSG,
+            query: { msg: msg }
+          });
         }
       } catch (error) {
         alert("会員登録に失敗しました。");

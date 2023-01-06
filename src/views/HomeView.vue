@@ -47,7 +47,6 @@
 }
 
 .products__wrap {
-  color: #222;
   padding: 10px 0;
   text-align: center;
 }

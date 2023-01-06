@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import LoginAndRegisterView from '@/views/LoginAndRegisterView.vue'
 import EmailVerifiedView from '@/views/Email/VerifiedView.vue'
+import CommonMessageView from '@/views/CommonMessageView.vue'
 import * as path from '@/const/pathName'
 
 const routes = [
@@ -20,6 +21,11 @@ const routes = [
     name: path.EMAIL_VERIFIED,
     component: EmailVerifiedView
   },
+  {
+    path: '/register/completed',
+    name: path.COMMON_MSG,
+    component: CommonMessageView
+  }
 ]
 
 const router = createRouter({

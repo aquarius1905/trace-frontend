@@ -1,12 +1,12 @@
 <template>
   <div>
-    <TextMessage :msg="メール認証が完了しました"></TextMessage>
+    <Message :msg="メール認証が完了しました"></Message>
   </div>
 </template>
 
 <script>
-import TextMessage from "@/components/TextMessage";
+import Message from "@/components/MessageView";
 export default {
-  components: { TextMessage }
+  components: { Message }
 };
 </script>
