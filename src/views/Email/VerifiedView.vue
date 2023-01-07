@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Message :msg="メール認証が完了しました"></Message>
+    <Message :msg="'メール認証が完了しました'"></Message>
   </div>
 </template>
 

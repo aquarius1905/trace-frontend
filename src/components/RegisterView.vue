@@ -138,46 +138,6 @@ export default {
 </script>
 
 <style scoped>
-.ttl {
-  font-size: 28px;
-  font-weight: normal;
-  margin-bottom: 40px;
-}
-
-.sub__ttl {
-  font-size: 22px;
-  font-weight: bold;
-  border-bottom: 3px solid #222;
-  padding-left: 10px;
-  margin-bottom: 30px;
-}
-
-.txt {
-  padding-left: 10px;
-}
-
-.input__wrap {
-  margin-top: 30px;
-  flex-grow: 1;
-}
-
-.lbl {
-  font-size: 18px;
-  font-weight: bold;
-  display: inline-block;
-  text-align: right;
-  width: 30%;
-  margin-right: 5px;
-}
-
-.input {
-  background: #f5f5f5;
-  border-radius: 5px;
-  font-size: 18px;
-  border: 1px solid #ddd;
-  width: 65%;
-}
-
 .register__btn {
   display: block;
   width: 280px;
