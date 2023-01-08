@@ -6,11 +6,14 @@ export default createStore({
     loggedInUser: null
   },
   getters: {
-    getCareManagerAccessToken(state) {
+    getAccessToken(state) {
       return state.accessToken;
     },
     isLoggedIn(state) {
       return state.accessToken !== null
+    },
+    getLoggedInUserName(state) {
+      return state.loggedInUser === null ? null : state.loggedInUser.name;
     }
   },
   mutations: {
@@ -19,6 +22,10 @@ export default createStore({
     },
     setLoggedInUserData(state, payload) {
       state.loggedInUser = payload;
+    },
+    resetUserData(state) {
+      state.accessToken = null;
+      state.loggedInUser = null;
     }
   },
   actions: {
@@ -27,6 +34,9 @@ export default createStore({
     },
     setLoggedInUserData(context, payload) {
       context.commit('setLoggedInUserData', payload);
+    },
+    resetUserData(context) {
+      context.commit('resetUserData');
     }
   },
   modules: {

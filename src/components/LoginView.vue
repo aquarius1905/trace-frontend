@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import { api } from '@/plugins/axios'
+import { api, authApi } from '@/plugins/axios'
 import { mapActions } from 'vuex'
 import { HOME } from '@/const/pathName'
 
@@ -72,16 +72,13 @@ export default {
       'setLoggedInUserData'
     ]),
     async login() {
-      console.log("login");
       const sendData = {
         email: this.email,
         password: this.password
       }
 
       try {
-        const { data } = await api.post(
-          '/users/login', sendData
-        );
+        const { data } = await api.post('/login', sendData);
 
         this.setAccessToken(data.token);
 
@@ -109,9 +106,12 @@ export default {
       }
     },
     async getUserData() {
-      const { data } = await api.get('/users/me');
-      this.setLoggedInUserData(data.data);
-      return data.data;
+      try {
+        const { data } = await authApi.get('/me');
+        this.setLoggedInUserData(data.data);
+      } catch (error) {
+        this.login_error = 'ユーザーの取得に失敗しました';
+      }
     }
   }
 }
