@@ -112,6 +112,7 @@ export default {
       }
 
       try {
+        this.$emit("toggleSpinner");
         const sendData = {
           email: this.email,
           password: this.password,
@@ -122,6 +123,8 @@ export default {
         );
         
         if (response.status === 201) {
+          this.$emit("toggleSpinner");
+          
           const msg = "会員登録が完了しました。\n\nご登録頂いたメールアドレス宛にメールを送信しましたので、\n認証をお願い致します。";
           
           this.$router.push({
@@ -130,6 +133,7 @@ export default {
           });
         }
       } catch (error) {
+        this.$emit("toggleSpinner");
         alert("会員登録に失敗しました。");
       }
     },

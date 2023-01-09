@@ -72,23 +72,28 @@ export default {
       'setLoggedInUserData'
     ]),
     async login() {
-      const sendData = {
-        email: this.email,
-        password: this.password
-      }
+
 
       try {
+        this.$emit("toggleSpinner");
+        const sendData = {
+          email: this.email,
+          password: this.password
+        }
         const { data } = await api.post('/login', sendData);
 
         this.setAccessToken(data.token);
 
         await this.getUserData();
 
+        this.$emit("toggleSpinner");
+
         this.$router.push({
           name: HOME
         });
 
       } catch (error) {
+        this.$emit("toggleSpinner");
         this.showError(error);
       }
     },
@@ -110,6 +115,7 @@ export default {
         const { data } = await authApi.get('/me');
         this.setLoggedInUserData(data.data);
       } catch (error) {
+        this.$emit("toggleSpinner");
         this.login_error = 'ユーザーの取得に失敗しました';
       }
     }

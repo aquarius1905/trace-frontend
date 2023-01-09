@@ -1,7 +1,7 @@
 <template>
   <div class="login-and-register">
-    <Login />
-    <Register />
+    <Login  @toggleSpinner="toggleSpinner"/>
+    <Register @toggleSpinner="toggleSpinner"/>
   </div>
 </template>
 
@@ -9,7 +9,20 @@
 import Login from '@/components/LoginView.vue'
 import Register from '@/components/RegisterView.vue'
 export default {
-  components: { Login, Register },
+  components: {
+    Login,
+    Register
+  },
+  data() {
+    return {
+      isLoading: false
+    }
+  },
+  methods: {
+    toggleSpinner() {
+      this.$emit('toggleSpinner');
+    },
+  }
 }
 </script>
 
