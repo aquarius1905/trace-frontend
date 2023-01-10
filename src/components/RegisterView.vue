@@ -1,10 +1,10 @@
 <template>
   <div class="register">
-    <!-- <Form class="input__form" v-slot="{ meta }">
+    <div class="input__form">
       <h2 class="ttl">新規会員登録</h2>
       <h3 class="sub__ttl">初めてご利用の方・会員以外の方</h3>
       <p class="txt">初めてご利用のお客様は、こちらから会員登録を行って下さい。</p>
-      <div class="input__wrap">
+      <Form class="input__wrap" :validation-schema="schema">
         <div>
           <label for="email" class="lbl">メールアドレス:</label>
           <Field 
@@ -13,7 +13,6 @@
             id="email" 
             class="input"
             placeholder="email" 
-            rules="required|email" 
             validateOnInput />
             <div class="error">
               <ErrorMessage name="email" />
@@ -27,7 +26,6 @@
             id="password" 
             class="input"
             placeholder="password" 
-            rules="required|min:6" 
             validateOnInput />
             <div class="error">
               <ErrorMessage name="password" />
@@ -41,51 +39,13 @@
             id="name" 
             class="input"
             placeholder="name" 
-            rules="required|min:4" 
             validateOnInput />
             <div class="error">
               <ErrorMessage name="name" />
             </div>
         </div>
-      </div>
-      <button class="register__btn" :disabled="!(meta.valid && meta.dirty)" @click="register()">
-        新規会員登録
-      </button>
-    </Form> -->
-    <div class="input__form">
-      <h2 class="ttl">新規会員登録</h2>
-      <h3 class="sub__ttl">初めてご利用の方・会員以外の方</h3>
-      <p class="txt">初めてご利用のお客様は、こちらから会員登録を行って下さい。</p>
-      <div class="input__wrap">
-        <div>
-          <label for="email" class="lbl">メールアドレス:</label>
-          <input 
-            v-model="email" 
-            name="email"
-            id="email" 
-            class="input"
-            placeholder="email" />
-        </div>
-        <div>
-          <label for="password" class="lbl">パスワード:</label>
-          <input type="password" 
-            v-model="password" 
-            name="password"
-            id="password" 
-            class="input"
-            placeholder="password" />
-        </div>
-        <div>
-          <label for="name" class="lbl">名前:</label>
-          <input type="text" 
-            v-model="name" 
-            name="name"
-            id="name" 
-            class="input"
-            placeholder="name" />
-        </div>
-      </div>
-      <button class="register__btn" @click="register">
+      </Form>
+      <button class="register__btn" @click="register()">
         新規会員登録
       </button>
     </div>
@@ -95,13 +55,21 @@
 <script>
 import { api } from '@/plugins/axios'
 import { COMMON_MSG } from '@/const/pathName'
+import { object, string } from 'yup';
+import { markRaw } from '@vue/reactivity';
 
 export default {
   data() {
+    const schema = markRaw(object({
+      email: string().required().email(),
+      password: string().required().min(6),
+      name: string().required().min(4)
+    }));
     return {
       email: '',
       password: '',
       name: '',
+      schema
     }
   },
 
