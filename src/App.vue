@@ -4,7 +4,7 @@
     <router-view @toggleSpinner="toggleSpinner"></router-view>
     <Footer />
     <div class="spinner__wrap" v-show="isLoading">
-      <clip-loader :color="'#80a31d'" :size="'100px'" :borderWidth="'5px'"/>
+      <clip-loader :color="'#80a31d'" :size="'100px'" />
     </div>
   </div>
 </template>

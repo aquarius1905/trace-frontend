@@ -4,7 +4,7 @@
       <h2 class="ttl">ログイン</h2>
       <h3 class="sub__ttl">会員のお客様</h3>
       <p class="txt">メールアドレスとパスワードを入力してログインして下さい。</p>
-      <!-- <div class="input__wrap">
+      <Form class="input__wrap" :validation-schema="schema" >
         <div>
           <label for="email" class="lbl">メールアドレス:</label>
           <Field type="text"
@@ -13,7 +13,6 @@
             id="email"
             class="input" 
             placeholder="email"
-            rules="required|email"
             validateOnInput />
           <div class="error">
             <ErrorMessage name="email" />
@@ -27,25 +26,13 @@
             id="password"
             class="input"
             placeholder="password" 
-            rules="required|min:6" 
             validateOnInput />
           <div class="error">
             <ErrorMessage name="password" />
           </div>
         </div>
         <div class="error">{{ login_error }}</div>
-      </div> -->
-      <div class="input__wrap">
-        <div>
-          <label for="email" class="lbl">メールアドレス:</label>
-          <input v-model="email" name="email" id="email" class="input" placeholder="email" />
-        </div>
-        <div>
-          <label for="password" class="lbl">パスワード:</label>
-          <input type="password" v-model="password" name="password" id="password" class="input" placeholder="password" />
-        </div>
-        <div class="error">{{ login_error }}</div>
-      </div>
+      </Form>
       <button class="login__btn" @click="login">
         ログイン
       </button>
@@ -57,13 +44,21 @@
 import { api, authApi } from '@/plugins/axios'
 import { mapActions } from 'vuex'
 import { HOME } from '@/const/pathName'
+import { object, string } from 'yup';
+import { markRaw } from '@vue/reactivity';
+
 
 export default {
   data() {
+    const schema = markRaw(object({
+      email: string().required().email(),
+      password: string().required().min(6)
+    }));
     return {
       email: '',
       password: '',
-      login_error: ''
+      login_error: '',
+      schema
     }
   },
   methods: {
@@ -72,8 +67,6 @@ export default {
       'setLoggedInUserData'
     ]),
     async login() {
-
-
       try {
         this.$emit("toggleSpinner");
         const sendData = {
@@ -143,5 +136,10 @@ export default {
   left: 0;
   right: 0;
   margin: 0 auto;
+}
+
+.login__btn:disabled {
+  background-color: #555;
+  cursor: default;
 }
 </style>
