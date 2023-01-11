@@ -1,8 +1,6 @@
 <template>
   <div class="header">
-    <router-link to="/" class="main__ttl">
-      <h1 class="main__ttl">Trace</h1>
-    </router-link>
+    <h1 class="main__ttl" @click="toHome">Trace</h1>
     <div class="rightside__wrap">
       <label v-show="isLoggedIn" class="loggedin__name">{{ userName }}</label>
       <img :src="require(`@/assets/images/cart.png`)" alt="cart" class="cart">
@@ -21,7 +19,7 @@
 <script>
 import { authApi } from '@/plugins/axios'
 import { mapGetters, mapActions } from 'vuex'
-import { COMMON_MSG } from '@/const/pathName'
+import { HOME, COMMON_MSG } from '@/const/pathName'
 
 export default {
   computed: {
@@ -34,6 +32,9 @@ export default {
     ...mapActions([
       'resetUserData'
     ]),
+    toHome() {
+      this.$router.push({ name: HOME });
+    },
     async logout() {
       if (!confirm('ログアウトしますか？')) {
         return;
@@ -71,6 +72,7 @@ export default {
   font-size: 40px;
   font-weight: normal;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .loggedin__name::before{

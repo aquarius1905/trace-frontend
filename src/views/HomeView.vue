@@ -14,6 +14,23 @@
 </template>
 
 <script>
+import { api } from '@/plugins/axios'
+
+export default {
+  data() {
+    return {
+      products: []
+    }
+  },
+  async created() {
+    try {
+      const { data } = await api.get('products');
+      this.products = data.data;
+    } catch (error) {
+      alert("商品の取得に失敗しました");
+    }
+  }
+}
 </script>
 
 <style scoped>
