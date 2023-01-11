@@ -1,10 +1,10 @@
 <template>
   <div class="register">
-    <div class="input__form">
+    <Form class="input__form" @submit="register" :validation-schema="schema" v-slot="{ meta }">
       <h2 class="ttl">新規会員登録</h2>
       <h3 class="sub__ttl">初めてご利用の方・会員以外の方</h3>
       <p class="txt">初めてご利用のお客様は、こちらから会員登録を行って下さい。</p>
-      <Form class="input__wrap" :validation-schema="schema">
+      <div class="input__wrap">
         <div>
           <label for="email" class="lbl">メールアドレス:</label>
           <Field 
@@ -44,11 +44,11 @@
               <ErrorMessage name="name" />
             </div>
         </div>
-      </Form>
-      <button class="register__btn" @click="register()">
+      </div>
+      <button class="register__btn" :disabled="!(meta.valid && meta.dirty)">
         新規会員登録
       </button>
-    </div>
+    </Form>
   </div>
 </template>
 
@@ -128,6 +128,7 @@ export default {
 }
 
 .register__btn:disabled {
+  background-color: #999;
   cursor: default;
 }
 </style>

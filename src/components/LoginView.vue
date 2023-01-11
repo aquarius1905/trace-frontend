@@ -1,10 +1,10 @@
 <template>
   <div class="login">
-    <div class="input__form">
+    <Form @submit="login" class="input__form" :validation-schema="schema" v-slot="{ meta }">
       <h2 class="ttl">ログイン</h2>
       <h3 class="sub__ttl">会員のお客様</h3>
       <p class="txt">メールアドレスとパスワードを入力してログインして下さい。</p>
-      <Form class="input__wrap" :validation-schema="schema">
+      <div class="input__wrap">
         <div>
           <label for="email" class="lbl">メールアドレス:</label>
           <Field type="text"
@@ -32,11 +32,11 @@
           </div>
         </div>
         <div class="error">{{ login_error }}</div>
-      </Form>
-      <button class="login__btn" @click="login">
+      </div>
+      <button class="login__btn" :disabled="!(meta.valid && meta.dirty)">
         ログイン
       </button>
-    </div>
+    </Form>
   </div>
 </template>
 
@@ -73,6 +73,7 @@ export default {
           email: this.email,
           password: this.password
         }
+        
         const { data } = await api.post('/login', sendData);
 
         this.setAccessToken(data.token);
@@ -139,7 +140,7 @@ export default {
 }
 
 .login__btn:disabled {
-  background-color: #555;
+  background-color: #999;
   cursor: default;
 }
 </style>
