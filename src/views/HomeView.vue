@@ -7,8 +7,15 @@
         <p class="txt">for BOYS & GIRLS</p>
       </div>
     </div>
-    <div class="products__wrap">
+    <div class="products">
       <h2 class="products__ttl">Products</h2>
+      <div class="product__lst">
+        <div class="product" v-for="product in products" :key="product.index">
+          <img src="" alt="beigesandal">
+          <h3 class="product__name">{{ product.name }}</h3>
+          <label>&yen;{{ product.price }}(税込)</label>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -24,7 +31,7 @@ export default {
   },
   async created() {
     try {
-      const { data } = await api.get('products');
+      const { data } = await api.get('/products');
       this.products = data.data;
     } catch (error) {
       alert("商品の取得に失敗しました");
@@ -63,12 +70,27 @@ export default {
   font-size: 24px;
 }
 
-.products__wrap {
-  padding: 10px 0;
-  text-align: center;
+.products {
+  padding: 20px 0;
 }
+
 .products__ttl {
   font-size: 40px;
+  font-weight: normal;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.product__lst {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product {
+  width: 25%;
+}
+
+.product__name{
   font-weight: normal;
 }
 </style>
