@@ -1664,6 +1664,11 @@
   "resolved" "https://registry.npmjs.org/@vue/shared/-/shared-3.2.45.tgz"
   "version" "3.2.45"
 
+"@vue/test-utils@^2.0.0-rc.17":
+  "integrity" "sha512-BMuoruUFTEqhLoOgsMcgNVMiByYbfHCKGr2C4CPdGtz/affUtDVX5zr1RnPuq0tYSiaqq+Enw5voUpG6JY8Q7g=="
+  "resolved" "https://registry.npmjs.org/@vue/test-utils/-/test-utils-2.2.7.tgz"
+  "version" "2.2.7"
+
 "@vue/vue-loader-v15@npm:vue-loader@^15.9.7":
   "integrity" "sha512-SaPHK1A01VrNthlix6h1hq4uJu7S/z0kdLUb6klubo738NeQoLbS6V9/d8Pv19tU0XdQKju3D1HSKuI8wJ5wMA=="
   "resolved" "https://registry.npmjs.org/vue-loader/-/vue-loader-15.10.1.tgz"
@@ -6015,7 +6020,7 @@
   "resolved" "https://registry.npmjs.org/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz"
   "version" "1.9.1"
 
-"vue@*", "vue@^2 || ^3.2.13", "vue@^3.0.0", "vue@^3.2.0", "vue@^3.2.13", "vue@3.2.45":
+"vue@*", "vue@^2 || ^3.2.13", "vue@^3.0.0", "vue@^3.0.1", "vue@^3.2.0", "vue@^3.2.13", "vue@^3.2.25", "vue@3.2.45":
   "integrity" "sha512-9Nx/Mg2b2xWlXykmCwiTUCWHbWIj53bnkizBxKai1g61f2Xit700A1ljowpTIM11e3uipOeiPcSqnmBg6gyiaA=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.2.45.tgz"
   "version" "3.2.45"
@@ -6025,6 +6030,14 @@
     "@vue/runtime-dom" "3.2.45"
     "@vue/server-renderer" "3.2.45"
     "@vue/shared" "3.2.45"
+
+"vuejs-paginate-next@^1.0.2":
+  "integrity" "sha512-Dal1HXWuYrbvQ47NkagXIYAcEDnnWM3P8Nykf5a4oHc9PcM5BzlU1Z1NOSXAkjENI3WNoS+WhkpCsBhG9Bptgg=="
+  "resolved" "https://registry.npmjs.org/vuejs-paginate-next/-/vuejs-paginate-next-1.0.2.tgz"
+  "version" "1.0.2"
+  dependencies:
+    "@vue/test-utils" "^2.0.0-rc.17"
+    "vue" "^3.2.25"
 
 "vuex-persistedstate@^4.1.0":
   "integrity" "sha512-3SkEj4NqwM69ikJdFVw6gObeB0NHyspRYMYkR/EbhR0hbvAKyR5gksVhtAfY1UYuWUOCCA0QNGwv9pOwdj+XUQ=="
