@@ -10,29 +10,29 @@
     <div class="products">
       <h2 class="products__ttl">Products</h2>
       <div class="product__lst">
-        <div class="product" v-for="product in products" :key="product.index">
+        <div class="product" v-for="(product, index) in displayProducts" :key="index">
           <img src="" alt="beigesandal">
           <h3 class="product__name">{{ product.name }}</h3>
           <label>&yen;{{ product.price }}(税込)</label>
         </div>
       </div>
-    </div>
-    <div class="paginate__wrap">
-      <Paginate 
-      :v-model="current_page" 
-      :page-count="pageCount" 
-      :prev-text="'前へ'" :next-text="'次へ'"
-      :click-handler="paginateClickCallback" 
-      :container-class="'pagination'"
-      :page-class="'page-item'" 
-      :page-link-class="'page-link'"
-      :prev-class="'page-item'"
-      :prev-link-class="'page-link'"
-      :next-class="'page-item'"
-      :next-link-class="'page-link'"
-      :first-last-button="true" 
-      :first-button-text="'最初'"
-      :last-button-text="'最後'" />
+      <div class="paginate__wrap">
+        <Paginate 
+        :v-model="current_page" 
+        :page-count="pageCount" :prev-text="'前へ'" 
+        :next-text="'次へ'"
+        :click-handler="paginateClickCallback" 
+        :container-class="'pagination'" 
+        :page-class="'page-item'"
+        :page-link-class="'page-link'" 
+        :prev-class="'page-item'" 
+        :prev-link-class="'page-link'" 
+        :next-class="'page-item'"
+        :next-link-class="'page-link'" 
+        :first-last-button="true" 
+        :first-button-text="'最初'" 
+        :last-button-text="'最後'" />
+      </div>
     </div>
   </div>
 </template>
@@ -53,9 +53,15 @@ export default {
     }
   },
   computed: {
+    displayProducts() {
+      const start = (this.current_page - 1) * this.per_page;
+      const end = this.current_page * this.per_page;
+
+      return this.products.slice(start, end);
+    },
     pageCount() {
       return Math.ceil(this.products.length / this.per_page);
-    }
+    },
   },
   methods: {
     paginateClickCallback(pageNum) {
@@ -117,6 +123,7 @@ export default {
 .product__lst {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
 .product {
