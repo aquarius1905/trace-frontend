@@ -150,11 +150,15 @@ export default {
   cursor: pointer;
   position: relative;
   display: block;
-  padding: 0.5rem 0.75rem;
-  margin-left: -1px;
-  line-height: 1.25;
+  width: 60px;
+  text-align: center;
+  padding: 5px 0;
+  margin-right: 10px;
   background-color: #FFF;
-  border: 1px solid #80a31d;
+  border: 2px solid #80a31d;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 9999px;
 }
 
 .page-item.disabled .page-link {
@@ -162,7 +166,7 @@ export default {
   pointer-events: none;
   cursor: auto;
   background-color: #FFF;
-  border: 1px solid #80a31d;
+  border: 2px solid #80a31d;
 }
 
 .page-item.active .page-link {
